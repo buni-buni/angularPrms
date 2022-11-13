@@ -1,0 +1,84 @@
+﻿<!-- main app container -->
+<div class="card m-3">
+  <h5 class="card-header">Angular 10 Reactive Form Validation</h5>
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col">
+          <label>memberId</label>
+          <select formControlName="memberId" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.memberId.errors }"
+            (change)="updateSelection(dataSource, $event.target.value)">
+            <option [ngValue]="null" disabled>Choose your profile</option>
+            <option *ngFor="let prf of dataSource" [ngValue]="prf.Member_ID">
+            {{ prf.Member_ID }}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.memberId.errors" class="invalid-feedback">
+            <div *ngIf="f.memberId.errors.required">memberId is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Member Name</label>
+          <input type="text" formControlName="memberName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.memberName.errors }" [readonly]="true"/>
+          <div *ngIf="submitted && f.memberName.errors" class="invalid-feedback">
+            <div *ngIf="f.memberName.errors.required">First Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- <div class="form-group col">
+          <label>Years Of Experience</label>
+          <input type="number" formControlName="yoe" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.yoe.errors }" />
+          <div *ngIf="submitted && f.yoe.errors" class="invalid-feedback">
+            <div *ngIf="f.yoe.errors.required">Yearsof Experience is required</div>
+            <div *ngIf="f.yoe.errors.pattern">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+          </div>
+        </div> -->
+        <div class="form-group col">
+          <label>taskName</label>
+          <input type="text" formControlName="taskName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.taskName.errors }" />
+          <div *ngIf="submitted && f.taskName.errors" class="invalid-feedback">
+            <div *ngIf="f.taskName.errors.required">taskName is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label> More Description about Task</label>
+        <input type="text" formControlName="deliverables" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.deliverables.errors }" />
+        <div *ngIf="submitted && f.deliverables.errors" class="invalid-feedback">
+          <div *ngIf="f.deliverables.errors.required">Last Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-5">
+          <label>Task Start Date</label>
+          <input type="date" formControlName="startDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+          <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+            <div *ngIf="f.startDate.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Task End Date</label>
+          <input type="date" formControlName="endDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" />
+          <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+            <div *ngIf="f.endDate.errors.required">Last Name is required</div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Register</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
