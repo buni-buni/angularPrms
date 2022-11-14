@@ -15,7 +15,7 @@
             </option>
           </select>
           <div *ngIf="submitted && f.memberId.errors" class="invalid-feedback">
-            <div *ngIf="f.memberId.errors.required">memberId is required</div>
+            <div *ngIf="f.memberId.errors.required">Member Id is required</div>
           </div>
         </div>
         <div class="form-group col-5">
@@ -23,7 +23,7 @@
           <input type="text" formControlName="memberName" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.memberName.errors }" [readonly]="true"/>
           <div *ngIf="submitted && f.memberName.errors" class="invalid-feedback">
-            <div *ngIf="f.memberName.errors.required">First Name is required</div>
+            <div *ngIf="f.memberName.errors.required">Member Name is required</div>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <input type="text" formControlName="deliverables" class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f.deliverables.errors }" />
         <div *ngIf="submitted && f.deliverables.errors" class="invalid-feedback">
-          <div *ngIf="f.deliverables.errors.required">Last Name is required</div>
+          <div *ngIf="f.deliverables.errors.required">Description is required</div>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
           <input type="text" formControlName="projStartDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.projStartDate.errors }" [readonly]="true" />
           <div *ngIf="submitted && f.projStartDate.errors" class="invalid-feedback">
-            <div *ngIf="f.projStartDate.errors.required">Last Name is required</div>
+            <div *ngIf="f.projStartDate.errors.required">Project Start Date is required</div>
           </div>
         </div>
         <div class="form-group col-5">
@@ -69,7 +69,7 @@
           <input type="text" formControlName="projEndDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.projEndDate.errors }" [readonly]="true"/>
           <div *ngIf="submitted && f.projEndDate.errors" class="invalid-feedback">
-            <div *ngIf="f.projEndDate.errors.required">Last Name is required</div>
+            <div *ngIf="f.projEndDate.errors.required">Project End Date is required</div>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
           <input type="date" formControlName="startDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
           <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
-            <div *ngIf="f.startDate.errors.required">Last Name is required</div>
+            <div *ngIf="f.startDate.errors.required">Task Start Date</div>
           </div>
         </div>
         <div class="form-group col-5">
@@ -87,7 +87,7 @@
           <input type="date" formControlName="endDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" />
           <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
-            <div *ngIf="f.endDate.errors.required">Last Name is required</div>
+            <div *ngIf="f.endDate.errors.required">Task End Date is required</div>
           </div>
         </div>
       </div>

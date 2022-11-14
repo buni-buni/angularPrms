@@ -92,27 +92,27 @@ errorMessage: any;
 
 
         // display form values on success
-       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+       // alert('UI Response: SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
         //if(this.registerForm.value.endDate<)
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
         if(this.registerForm.value.endDate < date && this.registerForm.value.alp!=0) {
 
-          alert('If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
+          alert('UI Response: If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
 
           return;
         }
 
         if(this.registerForm.value.endDate > date && this.registerForm.value.alp!=100) {
 
-          alert(' If the project end date is greater than the current date, then the allocation percentage must be 100%');
+          alert('UI Response:  If the project end date is greater than the current date, then the allocation percentage must be 100%');
           return;
         }
 
         // if(this.registerForm.value.endDate < date && this.registerForm.value.alp!=0) {
         //
-        //   alert('If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
+        //   alert('UI Response: If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
         //   return;
         // }
     }

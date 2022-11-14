@@ -51,13 +51,14 @@ enableSubmit= true;
         this.submitted = true;
 
         // stop here if form is invalid
-        // if (this.registerForm.invalid) {
-        //     return;
-        // }
+        if (this.registerForm.invalid) {
+            return;
+        }
 
 
         this.http.put<any>('https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/members',{
         "Member_Name": this.registerForm.value.memberName,
+        "Member_ID":this.idSelectedVal,
         "Total_Exp": this.registerForm.value.yoe,
         "Skillset": this.registerForm.value.skillSet,
         "Project_start_date": this.registerForm.value.startDate,
@@ -80,27 +81,41 @@ enableSubmit= true;
 
 
         // display form values on success
-       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+       // alert('UI Response: SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
         //if(this.registerForm.value.endDate<)
         let today = new Date();
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
+        //const fields = ["Member_Name","Total_Exp","Skillset","Project_start_date","Project_end_date","Project_name","Allocation_percentage","Description"]
+        // let ar=[]
+        // this.registerForm.value.forEach(element => {
+        //
+        //   if(element==''){
+        //     ar.push(element);
+        //   }
+        // });
+        //
+        // if(ar.length>0){
+        //   alert('Ui Response: Please enter the following missing values: '+ ar.join(', '));
+        //   return;
+        // }
+
         if(this.registerForm.value.endDate < date && this.registerForm.value.alp!=0) {
 
-          alert('If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
+          alert('UI Response: If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
 
           return;
         }
 
         if(this.registerForm.value.endDate > date && this.registerForm.value.alp!=100) {
 
-          alert(' If the project end date is greater than the current date, then the allocation percentage must be 100%');
+          alert('UI Response:  If the project end date is greater than the current date, then the allocation percentage must be 100%');
           return;
         }
 
         // if(this.registerForm.value.endDate < date && this.registerForm.value.alp!=0) {
         //
-        //   alert('If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
+        //   alert('UI Response: If project end date is lesser than the current date, then the allocation percentage must be updated as 0.');
         //   return;
         // }
 

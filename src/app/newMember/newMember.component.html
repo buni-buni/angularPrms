@@ -29,7 +29,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col">
-          <label>Years Of Experience</label>
+          <label>Years Of Experience (Exp must be more than 4 years)  </label>
           <input type="number" formControlName="yoe" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.yoe.errors }" />
           <div *ngIf="submitted && f.yoe.errors" class="invalid-feedback">
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="form-group col">
-          <label>Skillset</label>
+          <label>Skillset (Minimum 3 skill required)</label>
           <input type="text" formControlName="skillSet" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.skillSet.errors }" />
           <div *ngIf="submitted && f.skillSet.errors" class="invalid-feedback">

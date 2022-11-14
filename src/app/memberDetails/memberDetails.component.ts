@@ -31,7 +31,7 @@ export class MemberDetailsComponent implements OnInit {
         //this.posts = response;
         this.dataSource = response;
       });
-      console.log("this.dataSource",this.dataSource)
+
   }
 
   displayedColumns: string[] = ['Member_ID', 'Member_Name', 'Total_Exp', 'Skillset','Description', 'Project_name','Project_start_date','Project_end_date'];

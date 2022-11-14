@@ -44,7 +44,7 @@ export class AssignTaskComponent implements OnInit {
       // let ctrl = this.dataSource.find(this.x => this.x.value.value === answer)
       // ctrl.controls.selectedValue.setValue(true)
 
-      
+
      // var str = "Abc: Lorem ipsum sit amet";
      idSelected = idSelected.split(":").pop().trim();
 
@@ -89,15 +89,16 @@ export class AssignTaskComponent implements OnInit {
 
 
         // display form values on success
-        if(this.registerForm.value.endDate < this.taskSource["Project_end_date"]) {
-          alert('Task End Date should be less than project end date');
+        if(this.registerForm.value.endDate > this.taskSource["Project_end_date"]) {
+
+          alert('UI Response: Task End Date should be less than project end date');
           return;
         }
         if(this.registerForm.value.endDate < this.registerForm.value.startDate) {
-          alert('Task End Date should be less than task start date');
+          alert('UI Response: Task End Date should be less than task start date');
           return;
         }
-        alert('SUCCESS!! DAta has been saved successfully');
+        alert('UI Response: SUCCESS!! DAta has been saved successfully');
     }
     getTaskDetails(id){
       this.service.getTaskDetailsById(id)

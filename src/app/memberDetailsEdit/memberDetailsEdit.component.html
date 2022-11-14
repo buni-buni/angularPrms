@@ -95,7 +95,7 @@
         </div>
 
         <div class="form-group col">
-          <label>Allocation Percentage {{enableSubmit}}</label>
+          <label>Allocation Percentage</label>
           <input type="number" formControlName="alp" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.alp.errors }"/>
           <div *ngIf="submitted && f.alp.errors" class="invalid-feedback">
