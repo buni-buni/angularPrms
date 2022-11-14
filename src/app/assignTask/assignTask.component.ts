@@ -16,6 +16,7 @@ export class AssignTaskComponent implements OnInit {
   x=[];
   y: any;
   errorMessage: any;
+  taskSource: Object;
     constructor(private formBuilder: FormBuilder,private service:CommonService,private http: HttpClient) { }
 
 
@@ -28,6 +29,8 @@ export class AssignTaskComponent implements OnInit {
             //projName: ['', Validators.required],
             startDate: ['', Validators.required],
             endDate: ['', Validators.required],
+            projStartDate: [''],
+            projEndDate: [''],
            // alp: ['', [Validators.required, Validators.min(4)]],
 
         });
@@ -40,24 +43,25 @@ export class AssignTaskComponent implements OnInit {
       // })
       // let ctrl = this.dataSource.find(this.x => this.x.value.value === answer)
       // ctrl.controls.selectedValue.setValue(true)
-      console.log("dataSource type", typeof(this.dataSource))
+
+      
      // var str = "Abc: Lorem ipsum sit amet";
      idSelected = idSelected.split(":").pop().trim();
-     console.log("idSelected",idSelected)
+
      this.populateTable(idSelected);
       this.idSelectedVal=idSelected;
-
+      this.getTaskDetails(idSelected);
     }
 
     populateTable(id){
       this.x.push(this.dataSource);
-        console.log("this.x",this.x)
-        console.log(typeof(this.x),this.x,id,this.x[0]);
+
+
        this.y= this.x[0]
       var obj=  this.y.find(o => o.Member_ID == id);
 
 
-    console.log(obj);
+
     this.registerForm.controls['memberName'].setValue(obj.Member_Name);
     }
     // convenience getter for easy access to form fields
@@ -65,12 +69,7 @@ export class AssignTaskComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
-        // stop here if form is invalid
-        // if (this.registerForm.invalid) {
-        //     return;
-        // }
-        this.http.post<any>('http://localhost:4000/taskDetails',{
+        this.http.post<any>('https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/tasks',{
           "Member_Name": this.registerForm.value.memberName,
           "Member_ID": this.registerForm.value.memberId,
           "Deliverables": this.registerForm.value.deliverables,
@@ -79,24 +78,48 @@ export class AssignTaskComponent implements OnInit {
           "Task_End_Date": this.registerForm.value.endDate,
           }).subscribe({
             next:data => {
-              console.log("data",data)
+
             },
           error:error => {
               this.errorMessage = error.message;
               console.error('There was an error!', error);
           }
           });
-          console.log(this.registerForm.value)
-        // display form values on success
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-    }
 
+
+
+        // display form values on success
+        if(this.registerForm.value.endDate < this.taskSource["Project_end_date"]) {
+          alert('Task End Date should be less than project end date');
+          return;
+        }
+        if(this.registerForm.value.endDate < this.registerForm.value.startDate) {
+          alert('Task End Date should be less than task start date');
+          return;
+        }
+        alert('SUCCESS!! DAta has been saved successfully');
+    }
+    getTaskDetails(id){
+      this.service.getTaskDetailsById(id)
+      .subscribe( async re => {
+        this.taskSource = re;
+        //
+        //this.taskSource.push(re);
+
+        //
+        this.registerForm.controls['projEndDate'].setValue(this.taskSource["Project_end_date"]);
+        this.registerForm.controls['projStartDate'].setValue(this.taskSource["Project_start_date"]);
+        //await this.populateTask(this.taskSource);
+
+      });
+
+    }
     getMemberDetails(){
       this.service.getMemberDetails()
       .subscribe( response => {
         //this.posts = response;
         this.dataSource = response;
-        console.log((this.dataSource));
+
 
       });
     }

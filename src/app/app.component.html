@@ -2,12 +2,12 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+        <!-- <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a> -->
         <a class="nav-item nav-link" routerLink="/newMember" *ngIf="isAdmin">Add New Member</a>
         <a class="nav-item nav-link" routerLink="/memberDetails" *ngIf="isAdmin">Member Details</a>
         <a class="nav-item nav-link" routerLink="/assignTask" *ngIf="isAdmin">Assign Task</a>
         <a class="nav-item nav-link" routerLink="/memberView" *ngIf="!isAdmin">View My Task</a>
-        <a class="nav-item nav-link" routerLink="/memberDetailsEditComponent">Member Details Edit</a>
+        <a class="nav-item nav-link" routerLink="/memberDetailsEditComponent" *ngIf="isAdmin">Member Details Edit</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>
@@ -17,12 +17,3 @@
     <router-outlet></router-outlet>
 </div>
 
-<!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        <a href="https://jasonwatmore.com/post/2020/05/15/angular-9-role-based-authorization-tutorial-with-example" target="_top">Angular 9 - Role Based Authorization Tutorial with Example</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
-</div>

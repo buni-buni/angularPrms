@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CommonService {
-  memberDetails = 'http://localhost:3000/memberdetails';
-  memberDetailsById = 'http://localhost:3000/memberdetails/:id'
+  memberDetails = 'https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/members';
+  memberDetailsById = 'https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/members/';
+  taskDetailsId='https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/tasks/';
   constructor(public httpClient: HttpClient) {}
 
   getMemberDetails(){
@@ -14,6 +15,10 @@ export class CommonService {
   }
 
   getMemberDetailsById(id){
-    return this.httpClient.get(this.memberDetailsById);
+    return this.httpClient.get(this.memberDetailsById+id);
+  }
+
+  getTaskDetailsById(id){
+    return this.httpClient.get(this.taskDetailsId+id);
   }
 }

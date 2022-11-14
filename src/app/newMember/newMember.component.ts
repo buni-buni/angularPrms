@@ -39,8 +39,8 @@ export class NewMemberComponent implements OnInit {
         // if (this.registerForm.invalid) {
         //     return;
         // }
-        console.log("this.registerForm.value",this.registerForm.value);
-        this.http.post<any>('http://localhost:3000/memberdetails',{
+
+        this.http.post<any>('https://4yvcvf6lv2.execute-api.us-east-1.amazonaws.com/members',{
         "Member_Name": this.registerForm.value.memberName,
         "Total_Exp": this.registerForm.value.yoe,
         "Skillset": this.registerForm.value.skillSet,
@@ -52,7 +52,7 @@ export class NewMemberComponent implements OnInit {
         }).subscribe({
           next:data => {
 
-            console.log("data",data)
+
           },
        error:error => {
           this.errorMessage = error.message;
@@ -61,12 +61,34 @@ export class NewMemberComponent implements OnInit {
         });
 
 
-        // display form values on success
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+
+        if(this.registerForm.value.yoe<4) {
+          alert('Years Of Experience must be more than 4years');
+          return;
+        }
+
+        if(this.registerForm.value.skillSet.split(',').length<3) {
+          alert('Please enter minimum 3 skills');
+          return;
+        }
+        if(this.registerForm.value.startDate > this.registerForm.value.startDate) {
+          alert('End date is less than start date');
+          return;
+        }
+        if(this.registerForm.value.alp > 100) {
+          alert('Please enter allocation in %');
+          return;
+        }
+       // this.registerForm.value.Member_ID= Number(new Date());
+       //
+        if(this.registerForm.value.memberName==""||this.registerForm.value.yoe==""||this.registerForm.value.skillSet==""||this.registerForm.value.startDate==""||this.registerForm.value.endDate==""||this.registerForm.value.projName==""||this.registerForm.value.alp==""||this.registerForm.value.description=="") {
+          alert('Please enter all details. All fields are mandetory');
+          return;
+        }
     }
 
     onReset() {
-        // this.submitted = false;
-        // this.registerForm.reset();
+        this.submitted = false;
+        this.registerForm.reset();
     }
 }

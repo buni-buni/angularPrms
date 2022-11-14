@@ -1,11 +1,11 @@
 ﻿<!-- main app container -->
 <div class="card m-3">
-  <h5 class="card-header">Angular 10 Reactive Form Validation</h5>
+  <h5 class="card-header">Assign New Task to the member.</h5>
   <div class="card-body">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
       <div class="form-row">
         <div class="form-group col">
-          <label>memberId</label>
+          <label>Member Id</label>
           <select formControlName="memberId" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.memberId.errors }"
             (change)="updateSelection(dataSource, $event.target.value)">
@@ -57,6 +57,24 @@
 
       <div class="form-row">
         <div class="form-group col-5">
+          <label>Project Start Date</label>
+          <input type="text" formControlName="projStartDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.projStartDate.errors }" [readonly]="true" />
+          <div *ngIf="submitted && f.projStartDate.errors" class="invalid-feedback">
+            <div *ngIf="f.projStartDate.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Project End Date</label>
+          <input type="text" formControlName="projEndDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.projEndDate.errors }" [readonly]="true"/>
+          <div *ngIf="submitted && f.projEndDate.errors" class="invalid-feedback">
+            <div *ngIf="f.projEndDate.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-5">
           <label>Task Start Date</label>
           <input type="date" formControlName="startDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
@@ -72,8 +90,6 @@
             <div *ngIf="f.endDate.errors.required">Last Name is required</div>
           </div>
         </div>
-
-
       </div>
       <div class="text-center">
         <button class="btn btn-primary mr-1">Register</button>
